@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { useState } from 'react'
+import { SignedIn, UserButton } from '@clerk/nextjs'
 import axios from 'axios'
 import Sidebar from '../../components/SideBar'
 import CodeEditor from '../../components/CodeEditor'
@@ -39,6 +40,11 @@ const Dash = () => {
                 <Sidebar />
             </div>
             <div className='ml-[60px] overflow-y-scroll md:ml-0 w-full h-full flex flex-col justify-start px-3 pt-2 items-center'>
+                <div className='w-fit h-fit flex justify-center items-center absolute top-2 right-4'>
+                    <SignedIn>
+                        <UserButton />
+                    </SignedIn>
+                </div>
                 <h1 className='text-3xl font-mono font-semibold mb-3'>Play-Ground</h1>
                 <div className='flex md:flex-row flex-col gap-2 md:gap-3.5 w-full'>
                     <div className='flex justify-center items-start flex-col gap-0.5 w-full'>
