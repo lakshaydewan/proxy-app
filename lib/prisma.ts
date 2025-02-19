@@ -1,11 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
-
-export const prisma =
-  globalForPrisma.prisma ||
-  new PrismaClient({
+const prismaClientSingleton = () => {
+  return new PrismaClient({
     log: ["query", "info", "warn", "error"],
   });
+};
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+declare global {
+  var prisma: PrismaClient | undefined;
+}
+
+export const prisma = global.prisma || prismaClientSingleton();
+
+if (process.env.NODE_ENV !== "production") global.prisma = prisma;
