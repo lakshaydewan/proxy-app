@@ -13,16 +13,24 @@ const Dash = () => {
     const [schema, setSchema] = useState(``);
     const [docs, setDocs] = useState('');
     const [response, setResponse] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async () => {
-        const res = await axios.post('/api/get-response', {
-            url,
-            instructions,
-            schema,
-            docs
-        })
-        //@ts-expect-error wwell idk what im doing
-        setResponse(res?.data.data)
+        try {
+            setLoading(true)
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_PROD_URL}/api/get-response`, {
+                url,
+                instructions,
+                schema,
+                docs
+            })
+            //@ts-expect-error wwell idk what im doing
+            setResponse(res?.data.data)
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -59,7 +67,19 @@ const Dash = () => {
                 <div className='flex flex-col gap-0.5 w-full'>
                     <span className='text-lg font-mono font-semibold pl-1'>RESPONSE</span>
                     <div className='overflow-y-hidden mt-1 h-full w-full rounded-md border border-neutral-800'>
-                        <ResponseCodeEditor code={response} />
+                        {
+                            loading ? (
+                                <div className='h-[290px] w-full'>
+                                    <div className='mt-0 w-full h-full flex justify-center items-center'>
+                                        <div className='w-fit h-full flex justify-center items-center'>
+                                            <div className='animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-neutral-300'></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <ResponseCodeEditor code={response} />
+                            )
+                        }
                     </div>
                 </div>
             </div>
