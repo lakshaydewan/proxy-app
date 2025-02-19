@@ -9,7 +9,6 @@ import Keys_Display from '../../components/keys'
 
 const Keys = async () => {
   const user = await currentUser()
-
   const keys = await prisma.apiKey.findMany({
     where: {
       clerkUserId: user?.id
