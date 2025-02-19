@@ -23,7 +23,7 @@ const Keys = async () => {
       <div className=''>
         <Sidebar />
       </div>
-      <div className='w-full h-full flex flex-col justify-start px-3 pt-2 items-center'>
+      <div className='ml-[60px] md:ml-0 w-full h-full flex flex-col justify-start px-3 pt-2 items-center'>
         <h1 className='text-3xl font-mono font-semibold mb-3'>Keys</h1>
         <div className='w-full h-full flex overflow-y-scroll flex-col justify-start px-3 items-center'>
           <Keys_Display keys={keys} />
