@@ -1,4 +1,5 @@
 'use client'
+import { useClerk } from "@clerk/nextjs";
 import { KeyRound, BookOpen, Database, Play, LogOut } from "lucide-react"
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,6 +9,7 @@ export default function Sidebar() {
 
     const [isOpen, setIsOpen] = useState(true);
     const url = usePathname();
+    const { signOut } = useClerk();
 
     const menuItems = [
         { name: "Data Proxy", link: "/dashboard", icon: Database, current: true },
@@ -50,7 +52,9 @@ export default function Sidebar() {
                     <span className="mr-2">⭐</span>
                     {isOpen && <span>Upgrade Plan</span>}
                 </a>
-                <button className="mt-1 flex w-full items-center rounded-lg px-2 py-2 text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white">
+                <button onClick={()=> {
+                    signOut()
+                }} className="mt-1 flex w-full items-center rounded-lg px-2 py-2 text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white">
                     <LogOut className="mr-3 h-5 w-5" />
                     {isOpen && <span>Sign Out</span>}
                 </button>

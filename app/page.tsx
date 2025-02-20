@@ -4,7 +4,6 @@ import { Github } from "lucide-react"
 export default async function Page() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
-      {/* Navigation */}
       <nav className="w-full p-6">
         <div className="flex justify-end gap-6 items-center max-w-7xl mx-auto">
           <Link href="/docs" className="text-sm hover:text-gray-300 transition-colors">
@@ -103,7 +102,7 @@ export default async function Page() {
             Book Demo
           </Link>
           <Link
-            href="https://github.com/lakshaydewan"
+            href="https://github.com/lakshaydewan/proxy-app"
             className="border hover:-translate-y-1 border-gray-700 px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-all duration-500 ease-out flex items-center gap-2"
           >
             <Github className="w-5 h-5" />

@@ -14,6 +14,7 @@ const GetApiKey = () => {
   const [key, setKey] = React.useState('');
   const [loading, setloading] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
+  const [copied, setCopied] = React.useState(false);
 
   return (
     <div className='w-full bg-neutral-900 h-screen flex text-white'>
@@ -63,8 +64,18 @@ const GetApiKey = () => {
           {
             key && (
               <div className="mt-4 relative w-full p-3 py-5 bg-neutral-800 rounded-md font-mono text-sm flex items-end justify-between">
+                {
+                  copied && <div className='absolute -top-7 text-xs font-mono bg-neutral-500 border border-neutral-50 p-1 rounded-lg right-1.5 flex items-center gap-2'>
+                      Copied!
+                  </div>
+                }
                 <div className='absolute top-3 cursor-pointer right-1.5 flex items-center gap-2'>
-                  <button onClick={() => window.navigator.clipboard.writeText(key)} className="text-neutral-400 hover:text-white focus:outline-none">
+                  <button onClick={() => {
+                    setCopied(true)
+                    setTimeout(() => {
+                      setCopied(false)
+                    }, 4000)
+                    window.navigator.clipboard.writeText(key)}} className="text-neutral-400 hover:text-white focus:outline-none">
                     <Clipboard className="mr-2 h-4 w-4" />
                   </button>
                 </div>
