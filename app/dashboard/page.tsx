@@ -70,7 +70,7 @@ const Dash = () => {
                     </div>
                 </div>
                 <div className='h-[1px] mb-0.5 mt-3 w-full bg-neutral-800'></div>
-                <div className='flex flex-col gap-0.5 w-full'>
+                <div className='flex flex-col gap-0.5 w-full h-full'>
                     <span className='text-lg font-mono font-semibold pl-1'>RESPONSE</span>
                     <div className='overflow-y-hidden mt-1 h-full w-full rounded-md border border-neutral-800'>
                         {
@@ -83,7 +83,9 @@ const Dash = () => {
                                     </div>
                                 </div>
                             ) : (
-                                <ResponseCodeEditor code={response} />
+                                <div className='h-full'>
+                                    <ResponseCodeEditor code={response} />
+                                </div>
                             )
                         }
                     </div>

@@ -7,7 +7,7 @@ function ResponseCodeEditor({ code }: {code: string}) {
     <Editor
       className="h-full"
       theme="vs-dark"
-      height="290px"
+      height="100%"
       defaultLanguage="JavaScript"
       value={code}
     />

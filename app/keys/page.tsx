@@ -6,17 +6,16 @@ import { prisma } from '../../lib/prisma'
 import { currentUser } from '@clerk/nextjs/server'
 import Keys_Display from '../../components/keys'
 
+async function getKeys(userId: string) {
+  return prisma.apiKey.findMany({
+    where: { clerkUserId: userId },
+    orderBy: { createdAt: "desc" }
+  })
+}
 
 const Keys = async () => {
-  const user = await currentUser()
-  const keys = await prisma.apiKey.findMany({
-    where: {
-      clerkUserId: user?.id
-    }, 
-    orderBy: {
-      createdAt: "desc"
-    }
-  })
+  const userId = await currentUser()
+  const keys = await getKeys(userId?.id as string)
 
   return (
     <div className='w-full h-screen flex bg-neutral-900 text-white'>
