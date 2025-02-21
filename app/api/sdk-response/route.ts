@@ -54,7 +54,7 @@ async function getMistralResponse(userPrompt: string, dummyJson: unknown, newSch
 export async function POST(request: NextRequest) {
   try {
     const body: ResponseObject = await request.json();
-    const authHeader = request.headers.get("Authorization");
+    const authHeader = request.headers.get("authorization");
     const token = authHeader?.split(" ")[1];
 
     if (!token) {
