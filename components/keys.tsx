@@ -1,8 +1,9 @@
 'use client'
 import React from 'react'
-import { Trash, Copy, CheckCircle, XCircle } from "lucide-react";
+import { Trash, CheckCircle, XCircle } from "lucide-react";
 import { deleteApiKey } from '../app/actions';
 import { changeStatus } from '../app/actions';
+import ClipBoard from './ClipBoard';
 
 interface Key {
     id: string;
@@ -16,7 +17,7 @@ const Keys_Display = ({ keys }: { keys: Key[] }) => {
 
     const handleDeleteKey = async (keyId: string) => {
         try {
-          await deleteApiKey(keyId); // Call your API action
+          await deleteApiKey(keyId);
           alert("Key deleted successfully!");
         } catch (error) {
           console.error("Failed to delete key:", error);
@@ -49,12 +50,7 @@ const Keys_Display = ({ keys }: { keys: Key[] }) => {
                       {key.status === "ACTIVE" ? "Active" : "Inactive"}
                     </span>
                   </div>
-                  <button
-                    onClick={() => navigator.clipboard.writeText(key.key)}
-                    className="text-neutral-400 hover:text-white transition"
-                  >
-                    <Copy className="w-5 h-5" />
-                  </button>
+                  <ClipBoard keyValue={key.key} />
                   <button
                     onClick={() => handleDeleteKey(key.id)}
                     className="text-red-500 hover:text-red-400 transition"
