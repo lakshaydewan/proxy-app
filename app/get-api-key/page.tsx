@@ -45,7 +45,8 @@ const GetApiKey = () => {
             try {
               setloading(true)
               const res = await createApiKey(userID as string, projectName)
-              setKey(res.key)
+              setKey(res.key);
+              setProjectName("");
             } catch (e: unknown) {
                 console.error(e)
                 alert("Error generating key")
