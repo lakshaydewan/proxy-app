@@ -7,6 +7,7 @@ import { currentUser } from '@clerk/nextjs/server'
 import Keys_Display from '../../components/keys'
 
 async function getKeys(userId: string) {
+
   return prisma.apiKey.findMany({
     where: { clerkUserId: userId },
     orderBy: { createdAt: "desc" }
