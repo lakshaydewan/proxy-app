@@ -96,7 +96,7 @@ export default async function Page() {
             Try Now
           </Link>
           <Link
-            href="/demo"
+            href="/dashboard"
             className="border hover:-translate-y-1 border-gray-700 px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-all duration-500 ease-out"
           >
             Book Demo
