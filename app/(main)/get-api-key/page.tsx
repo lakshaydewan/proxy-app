@@ -1,8 +1,7 @@
 'use client'
 import React from 'react'
-import Sidebar from '../../components/SideBar'
-import { SignedIn, UserButton, useUser } from '@clerk/nextjs'
-import { createApiKey } from '../actions'
+import { useUser } from '@clerk/nextjs'
+import { createApiKey } from '@/app/actions'
 import { Eye, EyeOff } from "lucide-react";
 import { Clipboard } from 'lucide-react'
 
@@ -18,15 +17,7 @@ const GetApiKey = () => {
 
   return (
     <div className='w-full bg-neutral-900 h-screen flex text-white'>
-      <div className=''>
-        <Sidebar />
-      </div>
       <div className='ml-[60px] md:ml-0 w-full h-full flex flex-col justify-start px-3 pt-2 items-center'>
-        <div className='w-fit h-fit flex justify-center items-center absolute top-2 right-4'>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </div>
         <h1 className='text-3xl font-mono font-semibold mb-3'>Key Store</h1>
         <div className='flex flex-col gap-0.5 mt-4 w-full'>
           <span className='text-base font-mono font-semibold pl-1'>PROJECT NAME</span>

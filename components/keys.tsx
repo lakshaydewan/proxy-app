@@ -5,8 +5,6 @@ import ClipBoard from './ClipBoard';
 import { useEffect, useState } from "react";
 import { Loader } from "./Loader";
 import { motion } from "motion/react";
-import { useUser } from "@clerk/nextjs";
-import { getKeys } from "@/lib/actions";
 
 interface Key {
   id: string;
@@ -20,21 +18,19 @@ const Keys_Display = () => {
   const [toastValue, setToastValue] = useState("");
   const [keys, setKeys] = useState<Key[]>([]);
   const [noKeys, setNoKeys] = useState(false);
-  const { user } = useUser();
 
   useEffect(() => {
-    if (!user?.id) return;
-    async function fetchKeys() {
-      try {
-        const data = await getKeys(user?.id as string);
-        if (data.length === 0) setNoKeys(true);
-        setKeys(data);
-      } catch (error) {
-        console.error("Failed to fetch keys:", error);
-      }
-    }
-    fetchKeys();
-  }, [user?.id]);
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.keys.length === 0) {
+          setNoKeys(true);
+        } else {
+          setNoKeys(false);
+          setKeys(data.keys);
+        }
+      });
+  }, []);
 
   const handleDeleteKey = async (keyId: string) => {
     setToastValue("Deleting key...");
