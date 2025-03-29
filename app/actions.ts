@@ -21,13 +21,18 @@ export async function createApiKey(userId: string, projectName: string) {
     return apiKey
 }
 
-export async function deleteApiKey(keyId: string) {
-    await prisma.apiKey.delete({
+export async function deleteApiKey(keyId: string): Promise<"success" | "failure"> {
+    const res = await prisma.apiKey.delete({
         where: {
             id: keyId
         }
     })
     revalidatePath("/keys")
+    if (!res) {
+        return "failure"
+    } else {
+        return "success"
+    }
 }
 
 export async function changeStatus(keyId: string, status: string) {

@@ -16,6 +16,7 @@ interface Key {
 
 const Keys_Display = () => {
   const [toastValue, setToastValue] = useState("");
+  const [errorValue, setErrorValue] = useState("");
   const [keys, setKeys] = useState<Key[]>([]);
   const [noKeys, setNoKeys] = useState(false);
 
@@ -35,8 +36,21 @@ const Keys_Display = () => {
   const handleDeleteKey = async (keyId: string) => {
     setToastValue("Deleting key...");
     try {
-      await deleteApiKey(keyId);
+      const res = await deleteApiKey(keyId);
+      if (res === "failure") {
+        setErrorValue("Failed to delete key");
+        setTimeout(() => {
+          setErrorValue("");
+        }, 3000);
+        return;
+      }
+      if (keys.length === 1) {
+        console.log("No keys left");
+        setKeys([]);
+        setNoKeys(true);
+      } else {
       setKeys((prevKeys) => prevKeys.filter((key) => key.id !== keyId));
+      }
     } catch (error) {
       console.error("Failed to delete key:", error);
     } finally {
@@ -72,6 +86,17 @@ const Keys_Display = () => {
         >
           <div className="text-center font-mono font-semibold text-sm text-neutral-100">{toastValue}</div>
           <Loader />
+        </motion.div>
+      )}
+      {errorValue && (
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.5, ease: "backOut" }}
+          className="flex absolute gap-2 border rounded-lg p-2 bg-neutral-800 top-6 z-30 left-[50%] -translate-x-[50%] justify-center items-center w-fit h-fit"
+        >
+          <div className="text-center font-mono font-semibold text-xs text-red-400">{errorValue}</div>
         </motion.div>
       )}
       {
