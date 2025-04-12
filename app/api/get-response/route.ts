@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ResponseObject } from "../../../lib/types";
 import axios from "axios";
+import { time } from "console";
+import { TIMEOUT } from "dns";
 
 const API_KEY = process.env.API_KEY;
 const API_URL = process.env.API_URL;
@@ -26,6 +28,7 @@ async function getMistralResponse(userPrompt: string, dummyJson: unknown, newSch
         max_tokens: 2000,
       },
       {
+        timeout: 30000,
         headers: {
           Authorization: `Bearer ${API_KEY}`,
           "Content-Type": "application/json",
@@ -51,7 +54,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: "Missing required fields", status: 400 }, { status: 400 });
     }
 
-    const apiResponse = await axios.get(url);
+    const apiResponse = await axios.get(url, {
+      timeout: 15000,
+    });
     const dummyJson = apiResponse.data;
 
     const finalRes = await getMistralResponse(instructions, dummyJson, schema);
