@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ResponseObject } from "../../../lib/types";
 import axios from "axios";
-import { time } from "console";
-import { TIMEOUT } from "dns";
 
 const API_KEY = process.env.API_KEY;
 const API_URL = process.env.API_URL;
