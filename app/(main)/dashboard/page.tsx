@@ -15,6 +15,12 @@ const Dash = () => {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async () => {
+
+        if (!url || !instructions) {
+            alert('Please fill all the fields')
+            return
+        }
+
         try {
             setLoading(true)
             const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_PROD_URL}/api/get-response`, {
@@ -38,11 +44,11 @@ const Dash = () => {
                 <h1 className='text-3xl font-mono font-semibold mb-3'>Play-Ground</h1>
                 <div className='flex md:flex-row flex-col gap-2 md:gap-3.5 w-full'>
                     <div className='flex justify-center items-start flex-col gap-0.5 w-full'>
-                        <span className='text-base font-mono font-semibold pl-1'>URL</span>
+                        <span className='text-base font-mono font-semibold pl-1'>URL<sup> *</sup></span>
                         <input value={url} onChange={(e) => setUrl(e.target.value)} className='bg-neutral-900 border w-full pl-3 p-2 font-mono font-light rounded-md border-neutral-800 focus:border-neutral-500 focus:outline-none ring-0' type="text" placeholder='https://example.com' />
                     </div>
                     <div className='flex justify-center items-start flex-col gap-0.5 w-full'>
-                        <span className='text-base font-mono font-semibold pl-1'>INSTRUCTION</span>
+                        <span className='text-base font-mono font-semibold pl-1'>INSTRUCTION<sup> *</sup></span>
                         <input value={instructions} onChange={(e) => setInstructions(e.target.value)} className='bg-neutral-900 border w-full pl-3 p-2 font-mono font-light rounded-md border-neutral-800 focus:border-neutral-500 focus:outline-none ring-0' type="text" placeholder='Remove the empty fields and add an ID' />
                     </div>
                 </div>
