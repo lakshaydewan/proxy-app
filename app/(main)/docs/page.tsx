@@ -59,16 +59,15 @@ main();`}
         <section className='mb-8'>
           <h2 className='text-2xl font-semibold mb-2'>📚 Resources</h2>
           <ul className='list-disc list-inside'>
-            <li><a href='https://github.com/proxy-ai/proxy-ai' className='text-blue-400 hover:underline' target='_blank' rel='noopener noreferrer'>GitHub Repository</a></li>
-            <li><a href='https://examples.proxy-ai.dev' className='text-blue-400 hover:underline' target='_blank' rel='noopener noreferrer'>Transformation Examples</a></li>
+            <li><a href='https://github.com/lakshaydewan/proxy-app' className='text-blue-400 hover:underline' target='_blank' rel='noopener noreferrer'>GitHub Repository</a></li>
           </ul>
         </section>
 
         <section>
           <h2 className='text-2xl font-semibold mb-2'>💬 Community & Support</h2>
           <ul className='list-disc list-inside'>
-            <li><a href='https://discord.gg/proxy-ai' className='text-blue-400 hover:underline' target='_blank' rel='noopener noreferrer'>Join the proxy-ai Discord</a></li>
-            <li><a href='mailto:support@proxy-ai.dev' className='text-blue-400 hover:underline'>Contact Support</a></li>
+            <li><a href='https://discord.gg/' className='text-blue-400 hover:underline' target='_blank' rel='noopener noreferrer'>Join the proxy-ai Discord</a></li>
+            <li><a href='mailto:laxhay666@gmail.com' className='text-blue-400 hover:underline'>Contact Support</a></li>
           </ul>
         </section>
       </div>
