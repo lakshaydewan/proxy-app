@@ -3,7 +3,7 @@ import React from 'react'
 const DOCS = () => {
 
   return (
-    <div className='w-full h-full overflow-y-scroll bg-neutral-900 text-white flex flex-col items-center px-6 py-8'>
+    <div className='w-full h-full ml-[60px] md:ml-0 overflow-y-scroll bg-neutral-900 text-white flex flex-col items-center px-6 py-8'>
       <h1 className='text-4xl font-mono font-bold mb-4 text-center'>
         Proxy-ai Documentation
       </h1>
